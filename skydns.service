@@ -12,7 +12,8 @@ ExecStartPre=/usr/bin/docker pull dawi2332/skydns
 ExecStart=/usr/bin/bash -c '\
 /usr/bin/docker run --name %n \
 -p ${COREOS_PRIVATE_IPV4}:53:53/udp \
-dawi2332/skydns -nameserver `sed -n "s/^nameserver \(.*\)/\1/p" < /etc/resolv.conf`:53 -domain docker'
+-e ETCD_MACHINES=http://${COREOS_PRIVATE_IPV4}:4001 \
+dawi2332/skydns skydns'
 ExecStop=/usr/bin/docker stop %n
 ExecStopPost=/usr/bin/docker rm %n
 Restart=on-failure
