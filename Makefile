@@ -1,9 +1,8 @@
-GPG=gpg2
 DOCKER_USERNAME=dawi2332
 DOCKER_NAME=skydns
 DOCKER_TAG=$(DOCKER_USERNAME)/$(DOCKER_NAME):latest
 
-.PHONY=all deps build push clean clean build-skydns
+.PHONY=all deps build push clean build-skydns
 
 all:
 
